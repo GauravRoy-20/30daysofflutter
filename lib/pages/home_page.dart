@@ -1,14 +1,36 @@
-import 'package:flutter/material.dart';
-import 'package:learn_flutter/models/catalog.dart';
+import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:learn_flutter/models/catalog.dart';
 import '../widgets/mydrawer.dart';
 import '../widgets/product_item.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   final int days = 30;
+
   final String name = "Gaurav";
 
-  const HomePage({super.key});
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    loadData();
+  }
+
+  loadData() async {
+    final jsonData = await rootBundle.loadString("assets/files/catalog.json");
+    final jsonDataDecode = jsonDecode(jsonData);
+    var productsData = jsonDataDecode["products"];
+  }
 
   @override
   Widget build(BuildContext context) {
