@@ -6,14 +6,14 @@ class MyDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final imageUrl =
+    const imageUrl =
         "https://www.clipartmax.com/png/middle/4-46601_icons-spiderman-clipart-spiderman-symbol.png";
     return Drawer(
       child: Container(
         color: Colors.deepPurple,
         child: ListView(
           padding: EdgeInsets.zero,
-          children: [
+          children: const [
             DrawerHeader(
                 padding: EdgeInsets.zero,
                 child: UserAccountsDrawerHeader(

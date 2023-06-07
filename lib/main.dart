@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/pages/home_page.dart';
 import 'package:learn_flutter/pages/login_page.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:learn_flutter/utils/routes.dart';
 import 'package:learn_flutter/widgets/theme.dart';
 

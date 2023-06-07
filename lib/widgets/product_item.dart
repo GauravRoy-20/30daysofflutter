@@ -16,8 +16,8 @@ class ProductItem extends StatelessWidget {
         subtitle: Text(item.desc),
         trailing: Text(
           "\$${item.price}",
-          style:
-              TextStyle(color: Colors.deepPurple, fontWeight: FontWeight.bold),
+          style: const TextStyle(
+              color: Colors.deepPurple, fontWeight: FontWeight.bold),
         ),
       ),
     );
