@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:learn_flutter/widgets/theme.dart";
 import "package:velocity_x/velocity_x.dart";
 import "../models/catalog.dart";
 
@@ -13,9 +12,9 @@ class HomeDetailsPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
       ),
-      backgroundColor: MyTheme.creamcolor,
+      backgroundColor: context.canvasColor,
       bottomNavigationBar: Container(
-        color: Colors.white,
+        color: context.cardColor,
         child: ButtonBar(
           alignment: MainAxisAlignment.spaceBetween,
           buttonPadding: EdgeInsets.zero,
@@ -24,8 +23,8 @@ class HomeDetailsPage extends StatelessWidget {
             ElevatedButton(
                     onPressed: () {},
                     style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all(MyTheme.darkBluishColor),
+                        backgroundColor: MaterialStateProperty.all(context
+                            .theme.floatingActionButtonTheme.backgroundColor),
                         shape: MaterialStateProperty.all(
                           const StadiumBorder(),
                         )),
@@ -48,14 +47,11 @@ class HomeDetailsPage extends StatelessWidget {
               arcType: VxArcType.convey,
               edge: VxEdge.top,
               child: Container(
-                color: Colors.white,
+                color: context.cardColor,
                 width: context.screenWidth,
                 child: Column(
                   children: [
-                    catalog.name.text.lg
-                        .color(MyTheme.darkBluishColor)
-                        .bold
-                        .make(),
+                    catalog.name.text.lg.color(context.accentColor).bold.make(),
                     catalog.desc.text.textStyle(context.captionStyle).make(),
                     10.heightBox,
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"

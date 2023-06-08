@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:learn_flutter/models/catalog.dart';
 import 'package:learn_flutter/utils/routes.dart';
-import 'package:learn_flutter/widgets/theme.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../widgets/home_widgets/catalog_header.dart';
 import '../widgets/home_widgets/catalog_list.dart';
@@ -17,10 +16,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final int days = 30;
-
-  final String name = "Gaurav";
-
   @override
   void initState() {
     // TODO: implement initState
@@ -43,12 +38,15 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: MyTheme.creamcolor,
+      backgroundColor: context.canvasColor,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           Navigator.pushNamed(context, MyRoutes.cartRoute);
         },
-        backgroundColor: MyTheme.darkBluishColor,
+        backgroundColor:
+            context.theme.floatingActionButtonTheme.backgroundColor,
+        foregroundColor:
+            context.theme.floatingActionButtonTheme.foregroundColor,
         child: const Icon(CupertinoIcons.cart),
       ),
       body: SafeArea(
