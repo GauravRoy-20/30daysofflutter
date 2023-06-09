@@ -100,9 +100,6 @@ class _LoginPageState extends State<LoginPage> {
                         width: changeButton ? 50 : 150,
                         height: 50,
                         alignment: Alignment.center,
-                        decoration: const BoxDecoration(
-                          color: Colors.deepPurple,
-                        ),
                         child: changeButton
                             ? const Icon(
                                 Icons.done,

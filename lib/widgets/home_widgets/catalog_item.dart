@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:learn_flutter/models/catalog.dart';
+import 'package:learn_flutter/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'catalog_image.dart';
 
@@ -31,7 +32,9 @@ class CatalogItem extends StatelessWidget {
               children: [
                 "\$${catalog.price}".text.bold.xl.make(),
                 ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, MyRoutes.cartRoute);
+                    },
                     style: ButtonStyle(
                         backgroundColor: MaterialStateProperty.all(context
                             .theme.floatingActionButtonTheme.backgroundColor),
