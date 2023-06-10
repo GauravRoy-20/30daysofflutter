@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:learn_flutter/models/cart.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../core/store.dart';
+
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
 
@@ -15,8 +17,7 @@ class CartPage extends StatelessWidget {
       ),
       body: Column(
         children: [
-          CartList().p32().expand(),
-          // Placeholder().p32().expand(),
+          const CartList().p32().expand(),
           const Divider(),
           const CartTotal(),
         ],
@@ -29,7 +30,7 @@ class CartTotal extends StatelessWidget {
   const CartTotal({super.key});
   @override
   Widget build(BuildContext context) {
-    final cart = CartModel();
+    final CartModel cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Row(
@@ -60,35 +61,27 @@ class CartTotal extends StatelessWidget {
   }
 }
 
-// class CartList extends StatefulWidget {
-//   const CartList({super.key});
-
-//   @override
-//   State<CartList> createState() => _CartListState();
-// }
-
 class CartList extends StatelessWidget {
-  final _cart = CartModel();
-  CartList({super.key});
+  const CartList({super.key});
   @override
   Widget build(BuildContext context) {
-    return _cart.items.isEmpty
+    final CartModel cart = (VxState.store as MyStore).cart;
+    return cart.items.isEmpty
         ? "Cart is empty".text.xl3.color(context.accentColor).makeCentered()
         : ListView.builder(
             itemBuilder: (context, index) => ListTile(
               leading: const Icon(Icons.done),
               trailing: IconButton(
                 onPressed: () {
-                  _cart.remove(_cart.items[index]);
+                  cart.remove(cart.items[index]);
                   // setState(() {});
                 },
                 icon: const Icon(Icons.remove_circle_outline),
               ),
-              title: _cart.items[index].name.text
-                  .color(context.accentColor)
-                  .make(),
+              title:
+                  cart.items[index].name.text.color(context.accentColor).make(),
             ),
-            itemCount: _cart.items.length,
+            itemCount: cart.items.length,
           );
   }
 }
