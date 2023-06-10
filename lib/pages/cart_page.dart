@@ -17,8 +17,8 @@ class CartPage extends StatelessWidget {
         children: [
           CartList().p32().expand(),
           // Placeholder().p32().expand(),
-          Divider(),
-          CartTotal(),
+          const Divider(),
+          const CartTotal(),
         ],
       ),
     );
@@ -29,13 +29,13 @@ class CartTotal extends StatelessWidget {
   const CartTotal({super.key});
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    final cart = CartModel();
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${_cart.totalPrice}".text.xl6.color(context.accentColor).make(),
+          "\$${cart.totalPrice}".text.xl6.color(context.accentColor).make(),
           30.widthBox,
           ElevatedButton(
             onPressed: () {
@@ -60,28 +60,29 @@ class CartTotal extends StatelessWidget {
   }
 }
 
-class CartList extends StatefulWidget {
-  const CartList({super.key});
+// class CartList extends StatefulWidget {
+//   const CartList({super.key});
 
-  @override
-  State<CartList> createState() => _CartListState();
-}
+//   @override
+//   State<CartList> createState() => _CartListState();
+// }
 
-class _CartListState extends State<CartList> {
+class CartList extends StatelessWidget {
   final _cart = CartModel();
+  CartList({super.key});
   @override
   Widget build(BuildContext context) {
     return _cart.items.isEmpty
         ? "Cart is empty".text.xl3.color(context.accentColor).makeCentered()
         : ListView.builder(
             itemBuilder: (context, index) => ListTile(
-              leading: Icon(Icons.done),
+              leading: const Icon(Icons.done),
               trailing: IconButton(
                 onPressed: () {
                   _cart.remove(_cart.items[index]);
-                  setState(() {});
+                  // setState(() {});
                 },
-                icon: Icon(Icons.remove_circle_outline),
+                icon: const Icon(Icons.remove_circle_outline),
               ),
               title: _cart.items[index].name.text
                   .color(context.accentColor)
