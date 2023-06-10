@@ -41,7 +41,10 @@ class CartTotal extends StatelessWidget {
             onPressed: () {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
-                  content: "Buying not supported yet".text.make(),
+                  content: "Buying not supported yet"
+                      .text
+                      .color(Colors.white)
+                      .make(),
                 ),
               );
             },
@@ -68,16 +71,23 @@ class _CartListState extends State<CartList> {
   final _cart = CartModel();
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemBuilder: (context, index) => ListTile(
-        leading: Icon(Icons.done),
-        trailing: IconButton(
-          onPressed: () {},
-          icon: Icon(Icons.remove_circle_outline),
-        ),
-        title: _cart.items[index].name.text.make(),
-      ),
-      itemCount: _cart.items.length,
-    );
+    return _cart.items.isEmpty
+        ? "Cart is empty".text.xl3.color(context.accentColor).makeCentered()
+        : ListView.builder(
+            itemBuilder: (context, index) => ListTile(
+              leading: Icon(Icons.done),
+              trailing: IconButton(
+                onPressed: () {
+                  _cart.remove(_cart.items[index]);
+                  setState(() {});
+                },
+                icon: Icon(Icons.remove_circle_outline),
+              ),
+              title: _cart.items[index].name.text
+                  .color(context.accentColor)
+                  .make(),
+            ),
+            itemCount: _cart.items.length,
+          );
   }
 }

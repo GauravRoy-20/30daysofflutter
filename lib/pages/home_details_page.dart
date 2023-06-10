@@ -1,7 +1,7 @@
 import "package:flutter/material.dart";
 import "package:velocity_x/velocity_x.dart";
 import "../models/catalog.dart";
-import "../utils/routes.dart";
+import "../widgets/home_widgets/add_to_cart.dart";
 
 class HomeDetailsPage extends StatelessWidget {
   final Item catalog;
@@ -21,18 +21,7 @@ class HomeDetailsPage extends StatelessWidget {
           buttonPadding: EdgeInsets.zero,
           children: [
             "\$${catalog.price}".text.bold.xl4.red800.make(),
-            ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, MyRoutes.cartRoute);
-                    },
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(context
-                            .theme.floatingActionButtonTheme.backgroundColor),
-                        shape: MaterialStateProperty.all(
-                          const StadiumBorder(),
-                        )),
-                    child: "Buy".text.make())
-                .wh(100, 50)
+            AddToCart(catalog: catalog).wh(120, 50),
           ],
         ).p32(),
       ),
@@ -55,11 +44,15 @@ class HomeDetailsPage extends StatelessWidget {
                 child: Column(
                   children: [
                     catalog.name.text.lg.color(context.accentColor).bold.make(),
-                    catalog.desc.text.textStyle(context.captionStyle).make(),
+                    catalog.desc.text
+                        .textStyle(context.captionStyle)
+                        .color(context.accentColor)
+                        .make(),
                     10.heightBox,
                     "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
                         .text
                         .textStyle(context.captionStyle)
+                        .color(context.accentColor)
                         .make()
                         .px16()
                   ],
