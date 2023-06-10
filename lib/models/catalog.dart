@@ -26,9 +26,15 @@ class Item {
 class CatalogModel {
   static late List<Item> items;
 
+  // singleton class
+  static final catModel = CatalogModel._internal();
+  CatalogModel._internal();
+  factory CatalogModel() => catModel;
+
+  // get item by id
   Item getById(int id) => items.firstWhere(
         (element) => element.id == id,
       );
-
+  // get item by position
   Item getByPosition(int pos) => items[pos];
 }
