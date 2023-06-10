@@ -36,7 +36,17 @@ class CartTotal extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          "\$${cart.totalPrice}".text.xl6.color(context.accentColor).make(),
+          // "\$${cart.totalPrice}".text.xl6.color(context.accentColor).make(),
+          VxConsumer(
+              notifications: const {},
+              builder: (context, obj, status) {
+                return "\$${cart.totalPrice}"
+                    .text
+                    .xl6
+                    .color(context.accentColor)
+                    .make();
+              },
+              mutations: const {RemoveMutation}),
           30.widthBox,
           ElevatedButton(
             onPressed: () {
@@ -65,6 +75,7 @@ class CartList extends StatelessWidget {
   const CartList({super.key});
   @override
   Widget build(BuildContext context) {
+    VxState.watch(context, on: [RemoveMutation]);
     final CartModel cart = (VxState.store as MyStore).cart;
     return cart.items.isEmpty
         ? "Cart is empty".text.xl3.color(context.accentColor).makeCentered()
@@ -73,8 +84,7 @@ class CartList extends StatelessWidget {
               leading: const Icon(Icons.done),
               trailing: IconButton(
                 onPressed: () {
-                  cart.remove(cart.items[index]);
-                  // setState(() {});
+                  RemoveMutation(cart.items[index]);
                 },
                 icon: const Icon(Icons.remove_circle_outline),
               ),
