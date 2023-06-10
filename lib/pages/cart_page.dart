@@ -30,17 +30,16 @@ class CartTotal extends StatelessWidget {
   const CartTotal({super.key});
   @override
   Widget build(BuildContext context) {
-    final CartModel cart = (VxState.store as MyStore).cart;
+    final CartModel? cart = (VxState.store as MyStore).cart;
     return SizedBox(
       height: 200,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          // "\$${cart.totalPrice}".text.xl6.color(context.accentColor).make(),
           VxConsumer(
               notifications: const {},
               builder: (context, obj, status) {
-                return "\$${cart.totalPrice}"
+                return "\$${cart!.totalPrice}"
                     .text
                     .xl6
                     .color(context.accentColor)
@@ -76,20 +75,21 @@ class CartList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     VxState.watch(context, on: [RemoveMutation]);
-    final CartModel cart = (VxState.store as MyStore).cart;
-    return cart.items.isEmpty
+    final CartModel? cart = (VxState.store as MyStore).cart;
+    return cart!.items.isEmpty
         ? "Cart is empty".text.xl3.color(context.accentColor).makeCentered()
         : ListView.builder(
             itemBuilder: (context, index) => ListTile(
               leading: const Icon(Icons.done),
               trailing: IconButton(
                 onPressed: () {
-                  RemoveMutation(cart.items[index]);
+                  RemoveMutation(cart.items[index]!);
                 },
                 icon: const Icon(Icons.remove_circle_outline),
               ),
-              title:
-                  cart.items[index].name.text.color(context.accentColor).make(),
+              title: cart.items[index]!.name.text
+                  .color(context.accentColor)
+                  .make(),
             ),
             itemCount: cart.items.length,
           );

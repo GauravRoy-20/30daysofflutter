@@ -13,8 +13,8 @@ class AddToCart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     VxState.watch(context, on: [AddMutation, RemoveMutation]);
-    final CartModel cart = (VxState.store as MyStore).cart;
-    bool isInCart = cart.items.contains(catalog);
+    final CartModel? cart = (VxState.store as MyStore).cart;
+    bool isInCart = cart!.items.contains(catalog);
 
     return ElevatedButton(
         onPressed: () {
@@ -23,11 +23,12 @@ class AddToCart extends StatelessWidget {
           }
         },
         style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all(
-                context.theme.floatingActionButtonTheme.backgroundColor),
-            shape: MaterialStateProperty.all(
-              const StadiumBorder(),
-            )),
+          backgroundColor: MaterialStateProperty.all(
+              context.theme.floatingActionButtonTheme.backgroundColor),
+          shape: MaterialStateProperty.all(
+            const StadiumBorder(),
+          ),
+        ),
         child: isInCart
             ? const Icon(Icons.done)
             : const Icon(CupertinoIcons.cart_badge_plus));

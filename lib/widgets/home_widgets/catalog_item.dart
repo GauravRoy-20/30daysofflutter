@@ -11,40 +11,42 @@ class CatalogItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return VxBox(
-        child: Row(
-      children: [
-        Hero(
-          tag: Key(catalog.id.toString()),
-          child: CatalogImage(
-            image: catalog.image,
+      child: Row(
+        children: [
+          Hero(
+            tag: Key(catalog.id.toString()),
+            child: CatalogImage(
+              image: catalog.image,
+            ),
           ),
-        ),
-        Expanded(
+          Expanded(
             child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            catalog.name.text.lg.color(context.accentColor).bold.make(),
-            catalog.desc.text
-                .textStyle(context.captionStyle)
-                .color(context.accentColor)
-                .make(),
-            10.heightBox,
-            ButtonBar(
-              alignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                "\$${catalog.price}"
-                    .text
-                    .bold
-                    .xl2
+                catalog.name.text.lg.color(context.accentColor).bold.make(),
+                catalog.desc.text
+                    .textStyle(context.captionStyle)
                     .color(context.accentColor)
                     .make(),
-                AddToCart(catalog: catalog),
+                10.heightBox,
+                ButtonBar(
+                  alignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    "\$${catalog.price}"
+                        .text
+                        .bold
+                        .xl2
+                        .color(context.accentColor)
+                        .make(),
+                    AddToCart(catalog: catalog),
+                  ],
+                ),
               ],
             ),
-          ],
-        ))
-      ],
-    )).color(context.cardColor).rounded.square(150).make().py16();
+          )
+        ],
+      ),
+    ).color(context.cardColor).rounded.square(150).make().py16();
   }
 }

@@ -15,14 +15,16 @@ class MyDrawer extends StatelessWidget {
           padding: EdgeInsets.zero,
           children: const [
             DrawerHeader(
-                padding: EdgeInsets.zero,
-                child: UserAccountsDrawerHeader(
-                    margin: EdgeInsets.zero,
-                    accountName: Text("Gaurav Roy"),
-                    accountEmail: Text("gauravroy20.gr@gmail.com"),
-                    currentAccountPicture: CircleAvatar(
-                      backgroundImage: NetworkImage(imageUrl),
-                    ))),
+              padding: EdgeInsets.zero,
+              child: UserAccountsDrawerHeader(
+                margin: EdgeInsets.zero,
+                accountName: Text("Gaurav Roy"),
+                accountEmail: Text("gauravroy20.gr@gmail.com"),
+                currentAccountPicture: CircleAvatar(
+                  backgroundImage: NetworkImage(imageUrl),
+                ),
+              ),
+            ),
             ListTile(
               leading: Icon(
                 CupertinoIcons.home,

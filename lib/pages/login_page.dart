@@ -30,9 +30,9 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Material(
-        color: context.canvasColor,
-        child: SingleChildScrollView(
-            child: Form(
+      color: context.canvasColor,
+      child: SingleChildScrollView(
+        child: Form(
           key: _formKey,
           child: Column(
             children: [
@@ -90,31 +90,34 @@ class _LoginPageState extends State<LoginPage> {
                 height: 20.0,
               ),
               Material(
-                  color:
-                      context.theme.floatingActionButtonTheme.backgroundColor,
-                  borderRadius: BorderRadius.circular(changeButton ? 50 : 8),
-                  child: InkWell(
-                      onTap: () => handleLogin(context),
-                      child: AnimatedContainer(
-                        duration: const Duration(seconds: 1),
-                        width: changeButton ? 50 : 150,
-                        height: 50,
-                        alignment: Alignment.center,
-                        child: changeButton
-                            ? const Icon(
-                                Icons.done,
+                color: context.theme.floatingActionButtonTheme.backgroundColor,
+                borderRadius: BorderRadius.circular(changeButton ? 50 : 8),
+                child: InkWell(
+                  onTap: () => handleLogin(context),
+                  child: AnimatedContainer(
+                    duration: const Duration(seconds: 1),
+                    width: changeButton ? 50 : 150,
+                    height: 50,
+                    alignment: Alignment.center,
+                    child: changeButton
+                        ? const Icon(
+                            Icons.done,
+                            color: Colors.white,
+                          )
+                        : const Text(
+                            "Login",
+                            style: TextStyle(
                                 color: Colors.white,
-                              )
-                            : const Text(
-                                "Login",
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                      ))),
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold),
+                          ),
+                  ),
+                ),
+              ),
             ],
           ),
-        )));
+        ),
+      ),
+    );
   }
 }

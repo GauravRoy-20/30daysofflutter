@@ -24,12 +24,12 @@ class Item {
 }
 
 class CatalogModel {
-  static late List<Item> items;
+  static List<Item>? items;
 
   // get item by id
-  Item getById(int id) => items.firstWhere(
+  Item? getById(int id) => items!.firstWhere(
         (element) => element.id == id,
       );
   // get item by position
-  Item getByPosition(int pos) => items[pos];
+  Item? getByPosition(int pos) => items![pos];
 }
